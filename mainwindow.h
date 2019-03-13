@@ -2,6 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QPushButton>
+#include <QLineEdit>
+#include <QLabel>
 
 namespace Ui {
 class MainWindow;
@@ -17,6 +20,13 @@ public:
 
 private:
     Ui::MainWindow *ui;
+
+    QPushButton *_btn = nullptr;
+    QLineEdit *_le = nullptr;
+    QLabel *_lbl = nullptr;
+
+    void InitGui();
+
 };
 
 #endif // MAINWINDOW_H
