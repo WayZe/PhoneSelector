@@ -2,14 +2,19 @@
 #define PHONE_H
 
 #include <QString>
+#include <QList>
 
 class Phone
 {
 public:
     Phone();
+    ~Phone();
+
+    void AddNextPhone(Phone * nextPhone);
 
 private:
     QString *_name = nullptr;
+
     /* 1*/ bool _os; // true - IOS, false - android
     /* 2*/ bool _year;
     /* 3*/ bool _cores;
@@ -20,6 +25,8 @@ private:
     /* 8*/ bool _waterproof;
     /* 9*/ bool _nfc;
     /*10*/ bool _fastCharge;
+
+    QList<Phone *> *_nextPhones = nullptr;
 };
 
 #endif // PHONE_H
