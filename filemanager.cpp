@@ -1,6 +1,6 @@
 #include "filemanager.h"
+#include <QFile>
 
-FileManager::FileManager()
-{
 
-}
+
+

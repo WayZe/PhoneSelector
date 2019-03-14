@@ -2,15 +2,18 @@
 #define HANDLER_H
 
 #include <QStringList>
+#include "question.h"
 
 class Handler
 {
 public:
-    Handler();
+    ~Handler();
+    bool ReadQuestions(QList<Question *> *questions = nullptr);
 
 private:
-    QStringList *_questions = nullptr;
-    int _questionAmount;
+    QList<Question *> *_questions = nullptr;
+    int _questionAmount = 0;
+    void RemoveQuestions();
 };
 
 #endif // HANDLER_H

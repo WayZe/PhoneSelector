@@ -27,12 +27,16 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     handler.cpp \
-    phone.cpp
+    phone.cpp \
+    filemanager.cpp \
+    question.cpp
 
 HEADERS += \
         mainwindow.h \
     handler.h \
-    phone.h
+    phone.h \
+    filemanager.h \
+    question.h
 
 FORMS += \
         mainwindow.ui

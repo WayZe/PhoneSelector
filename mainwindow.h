@@ -3,8 +3,9 @@
 
 #include <QMainWindow>
 #include <QPushButton>
-#include <QLineEdit>
+#include <QTextEdit>
 #include <QLabel>
+#include "handler.h"
 
 namespace Ui {
 class MainWindow;
@@ -22,10 +23,14 @@ private:
     Ui::MainWindow *ui;
 
     QPushButton *_btn = nullptr;
-    QLineEdit *_le = nullptr;
+    QTextEdit *_le = nullptr;
     QLabel *_lbl = nullptr;
+    Handler *_handler = nullptr;
 
     void InitGui();
+
+private slots:
+    void onClickBtn(bool click);
 
 };
 
