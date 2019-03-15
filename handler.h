@@ -3,17 +3,32 @@
 
 #include <QStringList>
 #include "question.h"
+#include <QObject>
 
-class Handler
+class Handler: public QObject
 {
+    Q_OBJECT
 public:
     ~Handler();
-    bool ReadQuestions(QList<Question *> *questions = nullptr);
+    bool ReadQuestions(bool isDialog);
+    void SetPath(QString path);
+    QString GetPath();
+    Question * GetQuestion(int questionNumber);
+    void StartProccess();
 
 private:
     QList<Question *> *_questions = nullptr;
     int _questionAmount = 0;
     void RemoveQuestions();
+    QString _defaultPath = "";
+
+signals:
+     void signPrintQuestion(QString questionText);
+     void signCreateButton(QString answerText);
+     void onClicked();
+
+public slots:
+     void onHandlerCurrentButtonsClick();
 };
 
 #endif // HANDLER_H

@@ -1,8 +1,9 @@
 #include "question.h"
 
-Question::Question(int currId, int prevId, QString text)
+Question::Question(int currId, int prevId, QString question, QString answer)
 {
     _currId = currId;
     _prevId = prevId;
-    _text = text;
+    _answer = answer;
+    _question = question;
 }

@@ -6,11 +6,12 @@
 class Question
 {
 public:
-    Question(int currId, int prevId, QString text);
+    Question(int currId, int prevId, QString question, QString answer);
 
     int _currId = 0;
     int _prevId = 0;
-    QString _text = "";
+    QString _question = "";
+    QString _answer = "";
 };
 
 #endif // QUESTION_H

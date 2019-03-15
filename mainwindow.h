@@ -6,6 +6,7 @@
 #include <QTextEdit>
 #include <QLabel>
 #include "handler.h"
+//#include "currentbutton.h"
 
 namespace Ui {
 class MainWindow;
@@ -22,16 +23,29 @@ public:
 private:
     Ui::MainWindow *ui;
 
-    QPushButton *_btn = nullptr;
-    QTextEdit *_le = nullptr;
+    //QPushButton *_btn = nullptr;
+    //QTextEdit *_le = nullptr;
     QLabel *_lbl = nullptr;
     Handler *_handler = nullptr;
+    QList<QPushButton *> *_currentButtons = nullptr;
 
     void InitGui();
+    void WriteSettings();
+    void ReadSettings();
 
 private slots:
     void onClickBtn(bool click);
 
+    void on_action_triggered();
+
+    void onPrintQuestion(QString questionText);
+
+    void onCreateButton(QString answerText);
+
+    void onCurrentButtonsClick();
+
+signals:
+    //void signButtons
 };
 
 #endif // MAINWINDOW_H
