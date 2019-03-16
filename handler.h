@@ -21,6 +21,7 @@ private:
     int _questionAmount = 0;
     void RemoveQuestions();
     QString _defaultPath = "";
+    char _separators[2] = {'|','\n'};
 
 signals:
      void signPrintQuestion(QString questionText);

@@ -34,7 +34,7 @@ bool Handler::ReadQuestions(bool isDialog)
         {
             while(!file.atEnd())
             {
-                QList<QByteArray> questionsElems = file.readLine().split('|');
+                QList<QByteArray> questionsElems = file.readLine().split(_separators[0]);
                 //qDebug() << questionsElems;
                 if (questionsElems.count() > 4)
                 {
@@ -45,6 +45,12 @@ bool Handler::ReadQuestions(bool isDialog)
                 else
                 {
                     qDebug() << "Right format";
+                }
+
+                foreach (QByteArray part, questionsElems)
+                {
+                    part = part.split('\n')[0];
+                    qDebug() << part;
                 }
 
                 _questions->append(new Question(questionsElems.at(0).toInt(),
