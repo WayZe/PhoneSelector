@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QDebug>
-#include <QSettings>
+#include "settings.h"
 #include "question.h"
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -18,7 +18,7 @@ MainWindow::MainWindow(QWidget *parent) :
             this, SLOT(onCreateButton(QString)),
             Qt::ConnectionType::QueuedConnection);
 
-    this->ReadSettings();
+    Settings::ReadSettings();
 
     _handler->ReadQuestions(false);
 
@@ -52,7 +52,7 @@ void MainWindow::on_action_triggered()
 {
     if (_handler->ReadQuestions(true))
     {
-        this->WriteSettings();
+        Settings::WriteSettings();
 //        foreach (Question *question, *questions)
 //        {
 //            outQuestion+=QString::number(question->_currId) + " " +
@@ -66,33 +66,6 @@ void MainWindow::on_action_triggered()
     {
         qDebug() << "Dont read";
     }
-}
-
-void MainWindow::WriteSettings()
-{
-    QSettings settings(QSettings::UserScope, "MAI", "Selector");
-
-    settings.beginGroup("Settings");
-
-    qDebug() <<  _handler->GetPath();
-    settings.setValue("path", _handler->GetPath());
-
-    settings.endGroup();
-
-    settings.sync();
-}
-
-void MainWindow::ReadSettings()
-{
-    QSettings settings(QSettings::UserScope, "MAI", "Selector");
-
-    settings.beginGroup("Settings");
-
-    QString configFilePathFromSave = settings.value("path").toString();
-
-    settings.endGroup();
-
-    _handler->SetPath(configFilePathFromSave);
 }
 
 void MainWindow::onPrintQuestion(QString questionText)

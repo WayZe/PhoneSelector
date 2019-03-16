@@ -20,7 +20,6 @@ private:
     QList<Question *> *_questions = nullptr;
     int _questionAmount = 0;
     void RemoveQuestions();
-    QString _defaultPath = "";
     char _separators[2] = {'|','\n'};
 
 signals:

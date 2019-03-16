@@ -29,12 +29,14 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     handler.cpp \
-    question.cpp
+    question.cpp \
+    settings.cpp
 
 HEADERS += \
         mainwindow.h \
     handler.h \
-    question.h
+    question.h \
+    settings.h
 
 FORMS += \
         mainwindow.ui

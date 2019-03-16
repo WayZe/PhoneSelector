@@ -29,8 +29,6 @@ private:
     QVBoxLayout *_buttonsLayout = nullptr;
 
     void InitGui();
-    void WriteSettings();
-    void ReadSettings();
 
 private slots:
     void on_action_triggered();
