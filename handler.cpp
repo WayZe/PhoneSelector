@@ -67,7 +67,9 @@ bool Handler::ReadQuestions(bool isDialog)
                 _questions->append(new Question(questionsElems.at(0).toInt(),
                                                 questionsElems.at(1).toInt(),
                                                 questionsElems.at(2),
-                                                questionsElems.at(3)));
+                                                questionsElems.at(3),
+                                                questionsElems.at(4),
+                                                questionsElems.at(5)));
             }
             file.close();
         }
@@ -188,7 +190,7 @@ QString Handler::GetQuestionHistory()
     QString out = "";
     foreach (Question *question, *_questionHistory)
     {
-        out += question->_question + "\n" + question->_answer + "\n";
+        out += question->_questionDescription + "\n" + question->_answerDescription + "\n";
     }
     return out;
 }
