@@ -46,6 +46,8 @@ private slots:
 
     void onCurrentButtonsClick();
 
+    void on_action_4_triggered();
+
 signals:
     //void signButtons
 };

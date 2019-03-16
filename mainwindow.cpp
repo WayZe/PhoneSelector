@@ -149,3 +149,17 @@ void MainWindow::onCurrentButtonsClick()
         _currentButtons->clear();
     }
 }
+
+void MainWindow::on_action_4_triggered()
+{
+    if (_currentButtons)
+    {
+        foreach (QPushButton *btn, *_currentButtons)
+        {
+            delete btn;
+            btn = nullptr;
+        }
+        _currentButtons->clear();
+    }
+    _handler->StartProccess();
+}
