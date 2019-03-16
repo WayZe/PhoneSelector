@@ -142,6 +142,7 @@ void Handler::StartProccess()
                 emit signCreateButton(question->_answer);
             }
         }
+        emit AddSpacer();
     }
     else
     {
@@ -158,30 +159,34 @@ void Handler::onHandlerCurrentButtonsClick()
 
     int currId = -1;
 
-    foreach (Question *question, *_questions)
+    if (_questions)
     {
-        if(question->_answer == answer)
+        foreach (Question *question, *_questions)
         {
-            emit signPrintQuestion(question->_question);
-            currId = question->_currId;
-            _questionHistory->append(question);
-        }
-    }
-
-    foreach (Question *question, *_questions)
-    {
-        if (question->_prevId == currId)
-        {
-            if (question->_question != "")
+            if(question->_answer == answer)
             {
-                emit signCreateButton(question->_answer);
-            }
-            else
-            {
-                emit signPrintQuestion(question->_answer);
+                emit signPrintQuestion(question->_question);
+                currId = question->_currId;
                 _questionHistory->append(question);
             }
         }
+
+        foreach (Question *question, *_questions)
+        {
+            if (question->_prevId == currId)
+            {
+                if (question->_question != "")
+                {
+                    emit signCreateButton(question->_answer);
+                }
+                else
+                {
+                    emit signPrintQuestion(question->_answer);
+                    _questionHistory->append(question);
+                }
+            }
+        }
+        emit AddSpacer();
     }
 }
 
