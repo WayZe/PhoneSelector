@@ -18,6 +18,7 @@ public:
     Question * GetQuestion(int questionNumber);
     void StartProccess();
     QString GetQuestionHistory();
+    void ClearQuestionHistory();
 
 private:
     QList<Question *> *_questions = nullptr;

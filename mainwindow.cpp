@@ -19,11 +19,14 @@ MainWindow::MainWindow(QWidget *parent) :
             this, SLOT(onCreateButton(QString)),
             Qt::ConnectionType::QueuedConnection);
 
+    InitGui();
+
     this->ReadSettings();
 
-    _handler->ReadQuestions(false);
-
-    InitGui();
+     if (_handler->ReadQuestions(false))
+     {
+         _handler->StartProccess();
+     }
 }
 
 MainWindow::~MainWindow()
@@ -34,7 +37,6 @@ MainWindow::~MainWindow()
 void MainWindow::InitGui()
 {
     _lbl = new QTextEdit(this);
-    _lbl->setText("Введите текст:");
     _lbl->setMaximumHeight(100);
     _lbl->setMinimumWidth(200);
     _lbl->setStyleSheet("color: black; alignment: center");
@@ -46,8 +48,6 @@ void MainWindow::InitGui()
     _currentButtons = new QList<QPushButton *>();
 
     this->setBaseSize(200, 100);
-
-    _handler->StartProccess();
 }
 
 void MainWindow::on_action_triggered()
@@ -145,6 +145,9 @@ void MainWindow::on_action_4_triggered()
         }
         _currentButtons->clear();
     }
+
+    _handler->ClearQuestionHistory();
+
     _handler->StartProccess();
 }
 

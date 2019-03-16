@@ -82,6 +82,11 @@ bool Handler::ReadQuestions(bool isDialog)
         emit signPrintQuestion("Выберите файл");
     }
 
+    if (isRightFormat)
+    {
+
+    }
+
     return isRightFormat;
 }
 
@@ -133,8 +138,6 @@ void Handler::StartProccess()
             if (question->_prevId == 1)
             {
                 emit signCreateButton(question->_answer);
-                //_questionHistory->append(question);
-
             }
         }
     }
@@ -170,7 +173,6 @@ void Handler::onHandlerCurrentButtonsClick()
             if (question->_question != "")
             {
                 emit signCreateButton(question->_answer);
-                //                _questionHistory->append(question);
             }
             else
             {
@@ -189,4 +191,12 @@ QString Handler::GetQuestionHistory()
         out += question->_question + "\n" + question->_answer + "\n";
     }
     return out;
+}
+
+void Handler::ClearQuestionHistory()
+{
+    if (_questionHistory)
+    {
+        _questionHistory->clear();
+    }
 }
