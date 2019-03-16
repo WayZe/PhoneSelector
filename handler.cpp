@@ -36,7 +36,7 @@ bool Handler::ReadQuestions(bool isDialog)
 
     if (isDialog)
     {
-        _defaultPath = QFileDialog::getOpenFileName(NULL, "123", _defaultPath);
+        _defaultPath = QFileDialog::getOpenFileName(nullptr, "123", _defaultPath);
     }
 
     qDebug() << _defaultPath;
@@ -50,10 +50,11 @@ bool Handler::ReadQuestions(bool isDialog)
             while(!file.atEnd())
             {
                 QList<QByteArray> questionsElems = file.readLine().split(_separators[0]);
-                if (questionsElems.count() > 4)
+                if (questionsElems.count() > 6)
                 {
                     isRightFormat = false;
                     RemoveQuestions();
+                    qDebug() << "Bad format";
                     break;
                 }
 
@@ -115,24 +116,31 @@ Question * Handler::GetQuestion(int questionNumber)
 
 void Handler::StartProccess()
 {
-    foreach (Question *question, *_questions)
+    if (_questions)
     {
-        if (question->_currId == 1)
+        foreach (Question *question, *_questions)
         {
-            emit signPrintQuestion(question->_question);
-            _questionHistory->append(question);
-            break;
+            if (question->_currId == 1)
+            {
+                emit signPrintQuestion(question->_question);
+                _questionHistory->append(question);
+                break;
+            }
+        }
+
+        foreach (Question *question, *_questions)
+        {
+            if (question->_prevId == 1)
+            {
+                emit signCreateButton(question->_answer);
+                //_questionHistory->append(question);
+
+            }
         }
     }
-
-    foreach (Question *question, *_questions)
+    else
     {
-        if (question->_prevId == 1)
-        {
-            emit signCreateButton(question->_answer);
-            //_questionHistory->append(question);
-
-        }
+        qDebug() << "_questions is nullptr";
     }
 }
 
@@ -162,7 +170,7 @@ void Handler::onHandlerCurrentButtonsClick()
             if (question->_question != "")
             {
                 emit signCreateButton(question->_answer);
-//                _questionHistory->append(question);
+                //                _questionHistory->append(question);
             }
             else
             {
