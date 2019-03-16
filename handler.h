@@ -4,11 +4,13 @@
 #include <QStringList>
 #include "question.h"
 #include <QObject>
+#include "settings.h"
 
 class Handler: public QObject
 {
     Q_OBJECT
 public:
+    Handler(Settings *settings);
     ~Handler();
     bool ReadQuestions(bool isDialog);
     void SetPath(QString path);
@@ -21,6 +23,7 @@ private:
     int _questionAmount = 0;
     void RemoveQuestions();
     char _separators[2] = {'|','\n'};
+    Settings *_settings = nullptr;
 
 signals:
      void signPrintQuestion(QString questionText);

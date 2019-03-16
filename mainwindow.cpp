@@ -1,7 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QDebug>
-#include "settings.h"
 #include "question.h"
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -10,7 +9,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    _handler = new Handler();
+    _handler = new Handler(_settings);
     connect(_handler, SIGNAL(signPrintQuestion(QString)),
             this, SLOT(onPrintQuestion(QString)),
             Qt::ConnectionType::QueuedConnection);
@@ -18,7 +17,7 @@ MainWindow::MainWindow(QWidget *parent) :
             this, SLOT(onCreateButton(QString)),
             Qt::ConnectionType::QueuedConnection);
 
-    Settings::ReadSettings();
+    _settings->ReadSettings();
 
     _handler->ReadQuestions(false);
 
@@ -52,7 +51,7 @@ void MainWindow::on_action_triggered()
 {
     if (_handler->ReadQuestions(true))
     {
-        Settings::WriteSettings();
+        _settings->WriteSettings();
 //        foreach (Question *question, *questions)
 //        {
 //            outQuestion+=QString::number(question->_currId) + " " +

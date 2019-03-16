@@ -7,6 +7,7 @@
 #include <QLabel>
 #include <QVBoxLayout>
 #include "handler.h"
+#include "settings.h"
 
 namespace Ui {
 class MainWindow;
@@ -27,6 +28,7 @@ private:
     Handler *_handler = nullptr;
     QList<QPushButton *> *_currentButtons = nullptr;
     QVBoxLayout *_buttonsLayout = nullptr;
+    Settings *_settings = nullptr;
 
     void InitGui();
 

@@ -1,5 +1,4 @@
 #include "settings.h"
-#include <QSettings>
 
 void Settings::WriteSettings()
 {
@@ -25,14 +24,4 @@ void Settings::ReadSettings()
     settings.endGroup();
 
     SetPath(configFilePathFromSave);
-}
-
-void Settings::SetPath(QString path)
-{
-    _defaultPath = path;
-}
-
-QString Settings::GetPath()
-{
-    return _defaultPath;
 }

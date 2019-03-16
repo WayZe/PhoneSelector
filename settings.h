@@ -2,17 +2,18 @@
 #define SETTINGS_H
 
 #include <QString>
+#include <QSettings>
 
 class Settings
 {
 private:
-    static QString _defaultPath;
+    QString _defaultPath;
 
 public:
-    static void WriteSettings();
-    static void ReadSettings();
-    static void SetPath(QString path);
-    static QString GetPath();
+    void WriteSettings();
+    void ReadSettings();
+    void SetPath(QString path);
+    QString GetPath();
 };
 
 #endif // SETTINGS_H

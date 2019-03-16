@@ -4,7 +4,11 @@
 #include <QDir>
 #include <QDebug>
 #include <QPushButton>
-#include "settings.h"
+
+Handler::Handler(Settings *settings)
+{
+    _settings = settings;
+}
 
 Handler::~Handler()
 {
@@ -21,14 +25,14 @@ bool Handler::ReadQuestions(bool isDialog)
 
     if (isDialog)
     {
-        Settings::SetPath(QFileDialog::getOpenFileName(NULL, "123", Settings::GetPath()));
+        _settings->SetPath(QFileDialog::getOpenFileName(NULL, "123", _settings->GetPath()));
     }
 
-    qDebug() << Settings::GetPath();
+    qDebug() << _settings->GetPath();
 
-    if (Settings::GetPath() != "" || !isDialog)
+    if (_settings->GetPath() != "" || !isDialog)
     {
-        QFile file(Settings::GetPath());
+        QFile file(_settings->GetPath());
 
         if (file.exists() && (file.open(QIODevice::ReadOnly)))
         {
@@ -57,7 +61,7 @@ bool Handler::ReadQuestions(bool isDialog)
         }
         else
         {
-            qDebug() << "File does not exist" << Settings::GetPath();
+            qDebug() << "File does not exist" << _settings->GetPath();
             emit signPrintQuestion("Выберите файл с вопросами!");
         }
     }
