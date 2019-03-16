@@ -32,6 +32,7 @@ signals:
      void signPrintQuestion(QString questionText);
      void signCreateButton(QString answerText);
      void onClicked();
+     void AddSpacer();
 
 public slots:
      void onHandlerCurrentButtonsClick();

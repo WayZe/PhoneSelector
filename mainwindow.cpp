@@ -18,6 +18,11 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(_handler, SIGNAL(signCreateButton(QString)),
             this, SLOT(onCreateButton(QString)),
             Qt::ConnectionType::QueuedConnection);
+    connect(_handler, SIGNAL(AddSpacer()),
+            this, SLOT(onAddSpacer()),
+            Qt::ConnectionType::QueuedConnection);
+
+    //_spacer = new QSpacerItem(100,100);
 
     InitGui();
 
@@ -159,4 +164,9 @@ void MainWindow::on_ShowPath_triggered()
 void MainWindow::on_Exit_triggered()
 {
     qApp->exit();
+}
+
+void MainWindow::onAddSpacer()
+{
+    //_buttonsLayout->addSpacerItem(_spacer);
 }

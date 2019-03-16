@@ -7,6 +7,7 @@
 #include <QLabel>
 #include <QVBoxLayout>
 #include "handler.h"
+#include <QSpacerItem>
 
 namespace Ui {
 class MainWindow;
@@ -27,6 +28,7 @@ private:
     Handler *_handler = nullptr;
     QList<QPushButton *> *_currentButtons = nullptr;
     QVBoxLayout *_buttonsLayout = nullptr;
+    QSpacerItem *_spacer = nullptr;
 
     void InitGui();
     void WriteSettings();
@@ -44,6 +46,8 @@ private slots:
     void on_Restart_triggered();
     void on_ShowPath_triggered();
     void on_Exit_triggered();
+
+    void onAddSpacer();
 };
 
 #endif // MAINWINDOW_H
