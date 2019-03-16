@@ -29,18 +29,12 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     handler.cpp \
-    phone.cpp \
-    filemanager.cpp \
-    question.cpp \
-    currentbutton.cpp
+    question.cpp
 
 HEADERS += \
         mainwindow.h \
     handler.h \
-    phone.h \
-    filemanager.h \
-    question.h \
-    currentbutton.h
+    question.h
 
 FORMS += \
         mainwindow.ui

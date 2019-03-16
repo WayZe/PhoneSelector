@@ -1,9 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include <QMenuBar>
-#include "question.h"
 #include <QDebug>
 #include <QSettings>
+#include "question.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -49,14 +48,8 @@ void MainWindow::InitGui()
     _handler->StartProccess();
 }
 
-void MainWindow::onClickBtn(bool click)
-{
-}
-
 void MainWindow::on_action_triggered()
 {
-    QList<Question *> *questions = nullptr;
-
     if (_handler->ReadQuestions(true))
     {
         this->WriteSettings();

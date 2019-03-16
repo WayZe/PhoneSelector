@@ -5,9 +5,8 @@
 #include <QPushButton>
 #include <QTextEdit>
 #include <QLabel>
-#include "handler.h"
 #include <QVBoxLayout>
-//#include "currentbutton.h"
+#include "handler.h"
 
 namespace Ui {
 class MainWindow;
@@ -24,8 +23,6 @@ public:
 private:
     Ui::MainWindow *ui;
 
-    //QPushButton *_btn = nullptr;
-    //QTextEdit *_le = nullptr;
     QTextEdit *_lbl = nullptr;
     Handler *_handler = nullptr;
     QList<QPushButton *> *_currentButtons = nullptr;
@@ -36,8 +33,6 @@ private:
     void ReadSettings();
 
 private slots:
-    void onClickBtn(bool click);
-
     void on_action_triggered();
 
     void onPrintQuestion(QString questionText);
@@ -47,9 +42,6 @@ private slots:
     void onCurrentButtonsClick();
 
     void on_action_4_triggered();
-
-signals:
-    //void signButtons
 };
 
 #endif // MAINWINDOW_H
