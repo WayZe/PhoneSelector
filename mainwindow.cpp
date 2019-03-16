@@ -41,16 +41,6 @@ void MainWindow::InitGui()
 
     _buttonsLayout = new QVBoxLayout(this);
     ui->horizontalLayout->addLayout(_buttonsLayout);
-//    _le = new QTextEdit(this);
-//    _le->setText(_handler->GetPath());
-//    ui->layout->addWidget(_le);
-
-//    _btn = new QPushButton(this);
-//    ui->layout->addWidget(_btn);
-//    _btn->setMaximumWidth(100);
-//    _btn->setText("Ok");
-//    _btn->setStyleSheet("color: black; alignment: left");
-//    connect(_btn, SIGNAL(clicked(bool)), this, SLOT(onClickBtn(bool)));
 
     _currentButtons = new QList<QPushButton *>();
 
@@ -138,7 +128,6 @@ void MainWindow::onCreateButton(QString answerText)
 
 void MainWindow::onCurrentButtonsClick()
 {
-    qDebug() << "onCurrentButtonsClick() -->" << _currentButtons->count();
     if (_currentButtons)
     {
         foreach (QPushButton *btn, *_currentButtons)

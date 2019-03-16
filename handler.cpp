@@ -27,7 +27,6 @@ bool Handler::ReadQuestions(bool isDialog)
 
     if (_defaultPath != "" || !isDialog)
     {
-        qDebug() << "Is default path";
         QFile file(_defaultPath);
 
         if (file.exists() && (file.open(QIODevice::ReadOnly)))
@@ -35,16 +34,11 @@ bool Handler::ReadQuestions(bool isDialog)
             while(!file.atEnd())
             {
                 QList<QByteArray> questionsElems = file.readLine().split(_separators[0]);
-                //qDebug() << questionsElems;
                 if (questionsElems.count() > 4)
                 {
                     isRightFormat = false;
                     RemoveQuestions();
                     break;
-                }
-                else
-                {
-                    qDebug() << "Right format";
                 }
 
                 foreach (QByteArray part, questionsElems)
@@ -63,6 +57,7 @@ bool Handler::ReadQuestions(bool isDialog)
         else
         {
             qDebug() << "File does not exist" << _defaultPath;
+            emit signPrintQuestion("Выберите файл с вопросами!");
         }
     }
     else
@@ -104,13 +99,10 @@ Question * Handler::GetQuestion(int questionNumber)
 
 void Handler::StartProccess()
 {
-    qDebug() << "StartProccess() -->" << _questions->count();
     foreach (Question *question, *_questions)
     {
-        qDebug() << "Is Start question" << question->_currId;
         if (question->_currId == 1)
         {
-            qDebug() << "Is Start question";
             emit signPrintQuestion(question->_question);
             break;
         }
@@ -118,10 +110,8 @@ void Handler::StartProccess()
 
     foreach (Question *question, *_questions)
     {
-        qDebug() << "Is Start question" << question->_currId;
         if (question->_prevId == 1)
         {
-            qDebug() << "Is Start question";
             emit signCreateButton(question->_answer);
         }
     }
@@ -129,7 +119,6 @@ void Handler::StartProccess()
 
 void Handler::onHandlerCurrentButtonsClick()
 {
-    qDebug() << "Handler::onCurrentButtonsClick() -->";
     QPushButton* btn = qobject_cast<QPushButton *>(sender());
     QString answer = btn->text();
 
@@ -148,10 +137,8 @@ void Handler::onHandlerCurrentButtonsClick()
 
     foreach (Question *question, *_questions)
     {
-        qDebug() << "Is Start question" << question->_currId;
         if (question->_prevId == currId)
         {
-            qDebug() << "Is Start question";
             emit signCreateButton(question->_answer);
         }
     }
