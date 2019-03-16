@@ -139,7 +139,14 @@ void Handler::onHandlerCurrentButtonsClick()
     {
         if (question->_prevId == currId)
         {
-            emit signCreateButton(question->_answer);
+            if (question->_question != '-')
+            {
+                emit signCreateButton(question->_answer);
+            }
+            else
+            {
+                emit signPrintQuestion(question->_answer);
+            }
         }
     }
 }

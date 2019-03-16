@@ -36,6 +36,7 @@ void MainWindow::InitGui()
     _lbl->setText("Введите текст:");
     _lbl->setMaximumHeight(100);
     _lbl->setMinimumWidth(200);
+    _lbl->setStyleSheet("color: black; alignment: center");
     ui->horizontalLayout->addWidget(_lbl);
 
     _buttonsLayout = new QVBoxLayout(this);
