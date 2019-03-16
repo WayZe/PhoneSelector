@@ -6,6 +6,7 @@
 #include <QTextEdit>
 #include <QLabel>
 #include "handler.h"
+#include <QVBoxLayout>
 //#include "currentbutton.h"
 
 namespace Ui {
@@ -25,9 +26,10 @@ private:
 
     //QPushButton *_btn = nullptr;
     //QTextEdit *_le = nullptr;
-    QLabel *_lbl = nullptr;
+    QTextEdit *_lbl = nullptr;
     Handler *_handler = nullptr;
     QList<QPushButton *> *_currentButtons = nullptr;
+    QVBoxLayout *_buttonsLayout = nullptr;
 
     void InitGui();
     void WriteSettings();

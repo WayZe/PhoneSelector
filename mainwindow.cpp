@@ -33,12 +33,14 @@ MainWindow::~MainWindow()
 
 void MainWindow::InitGui()
 {
-    _lbl = new QLabel(this);
+    _lbl = new QTextEdit(this);
     _lbl->setText("Введите текст:");
-    _lbl->setMaximumHeight(20);
+    _lbl->setMaximumHeight(100);
     _lbl->setMinimumWidth(200);
-    ui->layout->addWidget(_lbl);
+    ui->horizontalLayout->addWidget(_lbl);
 
+    _buttonsLayout = new QVBoxLayout(this);
+    ui->horizontalLayout->addLayout(_buttonsLayout);
 //    _le = new QTextEdit(this);
 //    _le->setText(_handler->GetPath());
 //    ui->layout->addWidget(_le);
@@ -130,7 +132,7 @@ void MainWindow::onCreateButton(QString answerText)
             this, SLOT(onCurrentButtonsClick()),
             Qt::ConnectionType::QueuedConnection);
 
-    ui->layout->addWidget(btn);
+    _buttonsLayout->addWidget(btn);
     _currentButtons->append(btn);
 }
 
