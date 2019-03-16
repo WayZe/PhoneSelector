@@ -50,7 +50,7 @@ void MainWindow::InitGui()
     this->setBaseSize(200, 100);
 }
 
-void MainWindow::on_action_triggered()
+void MainWindow::on_Open_triggered()
 {
     if (_handler->ReadQuestions(true))
     {
@@ -134,7 +134,7 @@ void MainWindow::onCurrentButtonsClick()
     }
 }
 
-void MainWindow::on_action_4_triggered()
+void MainWindow::on_Restart_triggered()
 {
     if (_currentButtons)
     {
@@ -151,7 +151,7 @@ void MainWindow::on_action_4_triggered()
     _handler->StartProccess();
 }
 
-void MainWindow::on_action_3_triggered()
+void MainWindow::on_ShowPath_triggered()
 {
     QMessageBox::information(this, "История", _handler->GetQuestionHistory());
 }

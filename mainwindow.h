@@ -17,7 +17,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = 0);
+    explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
 private:
@@ -33,7 +33,7 @@ private:
     void ReadSettings();
 
 private slots:
-    void on_action_triggered();
+    void on_Open_triggered();
 
     void onPrintQuestion(QString questionText);
 
@@ -41,8 +41,8 @@ private slots:
 
     void onCurrentButtonsClick();
 
-    void on_action_4_triggered();
-    void on_action_3_triggered();
+    void on_Restart_triggered();
+    void on_ShowPath_triggered();
 };
 
 #endif // MAINWINDOW_H

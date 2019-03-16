@@ -33,36 +33,36 @@
     <property name="title">
      <string>Файл</string>
     </property>
-    <addaction name="action"/>
-    <addaction name="action_4"/>
+    <addaction name="Open"/>
+    <addaction name="Restart"/>
     <addaction name="separator"/>
-    <addaction name="action_2"/>
+    <addaction name="Exit"/>
    </widget>
    <widget class="QMenu" name="menu_2">
     <property name="title">
      <string>Помощь</string>
     </property>
-    <addaction name="action_3"/>
+    <addaction name="ShowPath"/>
    </widget>
    <addaction name="menu"/>
    <addaction name="menu_2"/>
   </widget>
-  <action name="action">
+  <action name="Open">
    <property name="text">
     <string>Открыть</string>
    </property>
   </action>
-  <action name="action_2">
+  <action name="Exit">
    <property name="text">
     <string>Выход</string>
    </property>
   </action>
-  <action name="action_4">
+  <action name="Restart">
    <property name="text">
     <string>Начать заново</string>
    </property>
   </action>
-  <action name="action_3">
+  <action name="ShowPath">
    <property name="text">
     <string>Показать путь</string>
    </property>
