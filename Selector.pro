@@ -8,7 +8,7 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = PhoneSelector
+TARGET = Selector
 TEMPLATE = app
 
 CONFIG += c++11
@@ -28,13 +28,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    handler.cpp \
-    question.cpp
+        handler.cpp \
+        question.cpp
 
 HEADERS += \
         mainwindow.h \
-    handler.h \
-    question.h
+        handler.h \
+        question.h
 
 FORMS += \
         mainwindow.ui
