@@ -155,3 +155,8 @@ void MainWindow::on_ShowPath_triggered()
 {
     QMessageBox::information(this, "История", _handler->GetQuestionHistory());
 }
+
+void MainWindow::on_Exit_triggered()
+{
+    qApp->exit();
+}

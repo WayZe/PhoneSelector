@@ -43,6 +43,7 @@ private slots:
 
     void on_Restart_triggered();
     void on_ShowPath_triggered();
+    void on_Exit_triggered();
 };
 
 #endif // MAINWINDOW_H
