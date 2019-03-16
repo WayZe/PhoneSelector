@@ -4,17 +4,20 @@
 #include <QStringList>
 #include "question.h"
 #include <QObject>
+#include <QList>
 
 class Handler: public QObject
 {
     Q_OBJECT
 public:
+    Handler();
     ~Handler();
     bool ReadQuestions(bool isDialog);
     void SetPath(QString path);
     QString GetPath();
     Question * GetQuestion(int questionNumber);
     void StartProccess();
+    QString GetQuestionHistory();
 
 private:
     QList<Question *> *_questions = nullptr;
@@ -22,6 +25,7 @@ private:
     void RemoveQuestions();
     QString _defaultPath = "";
     char _separators[2] = {'|','\n'};
+    QList<Question *> *_questionHistory = nullptr;
 
 signals:
      void signPrintQuestion(QString questionText);

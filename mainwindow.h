@@ -42,6 +42,7 @@ private slots:
     void onCurrentButtonsClick();
 
     void on_action_4_triggered();
+    void on_action_3_triggered();
 };
 
 #endif // MAINWINDOW_H

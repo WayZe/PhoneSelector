@@ -5,8 +5,24 @@
 #include <QDebug>
 #include <QPushButton>
 
+Handler::Handler()
+{
+    _questionHistory = new QList<Question *>();
+}
+
 Handler::~Handler()
 {
+    if (_questionHistory)
+    {
+        foreach (Question *question, *_questionHistory)
+        {
+            delete question;
+            question = nullptr;
+        }
+        delete _questionHistory;
+        _questionHistory = nullptr;
+    }
+
     RemoveQuestions();
 }
 
@@ -104,6 +120,7 @@ void Handler::StartProccess()
         if (question->_currId == 1)
         {
             emit signPrintQuestion(question->_question);
+            _questionHistory->append(question);
             break;
         }
     }
@@ -113,6 +130,8 @@ void Handler::StartProccess()
         if (question->_prevId == 1)
         {
             emit signCreateButton(question->_answer);
+            //_questionHistory->append(question);
+
         }
     }
 }
@@ -132,6 +151,7 @@ void Handler::onHandlerCurrentButtonsClick()
         {
             emit signPrintQuestion(question->_question);
             currId = question->_currId;
+            _questionHistory->append(question);
         }
     }
 
@@ -139,14 +159,26 @@ void Handler::onHandlerCurrentButtonsClick()
     {
         if (question->_prevId == currId)
         {
-            if (question->_question != '-')
+            if (question->_question != "")
             {
                 emit signCreateButton(question->_answer);
+//                _questionHistory->append(question);
             }
             else
             {
                 emit signPrintQuestion(question->_answer);
+                _questionHistory->append(question);
             }
         }
     }
+}
+
+QString Handler::GetQuestionHistory()
+{
+    QString out = "";
+    foreach (Question *question, *_questionHistory)
+    {
+        out += question->_question + "\n" + question->_answer + "\n";
+    }
+    return out;
 }

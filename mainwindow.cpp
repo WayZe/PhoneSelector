@@ -3,6 +3,7 @@
 #include <QDebug>
 #include <QSettings>
 #include "question.h"
+#include <QMessageBox>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -145,4 +146,9 @@ void MainWindow::on_action_4_triggered()
         _currentButtons->clear();
     }
     _handler->StartProccess();
+}
+
+void MainWindow::on_action_3_triggered()
+{
+    QMessageBox::information(this, "История", _handler->GetQuestionHistory());
 }
