@@ -7,21 +7,21 @@
 
 Handler::Handler()
 {
-    _questionHistory = new QList<Question *>();
+    _questionHistory = new QStringList();
 }
 
 Handler::~Handler()
 {
-    if (_questionHistory)
-    {
-        foreach (Question *question, *_questionHistory)
-        {
-            delete question;
-            question = nullptr;
-        }
-        delete _questionHistory;
-        _questionHistory = nullptr;
-    }
+//    if (_questionHistory)
+//    {
+//        foreach (Question *question, *_questionHistory)
+//        {
+//            delete question;
+//            question = nullptr;
+//        }
+//        delete _questionHistory;
+//        _questionHistory = nullptr;
+//    }
 
     RemoveQuestions();
 }
@@ -130,7 +130,7 @@ void Handler::StartProccess()
             if (question->_currId == 1)
             {
                 emit signPrintQuestion(question->_question);
-                _questionHistory->append(question);
+                _questionHistory->append(question->_question);
                 break;
             }
         }
@@ -142,7 +142,7 @@ void Handler::StartProccess()
                 emit signCreateButton(question->_answer);
             }
         }
-        emit AddSpacer();
+        emit signAddSpacer();
     }
     else
     {
@@ -155,7 +155,9 @@ void Handler::onHandlerCurrentButtonsClick()
     QPushButton* btn = qobject_cast<QPushButton *>(sender());
     QString answer = btn->text();
 
-    emit onClicked();
+    //_questionHistory->append(answer);
+
+    emit signClicked();
 
     int currId = -1;
 
@@ -167,7 +169,8 @@ void Handler::onHandlerCurrentButtonsClick()
             {
                 emit signPrintQuestion(question->_question);
                 currId = question->_currId;
-                _questionHistory->append(question);
+                _questionHistory->append(question->_answerDescription);
+                _questionHistory->append(question->_questionDescription);
             }
         }
 
@@ -182,22 +185,17 @@ void Handler::onHandlerCurrentButtonsClick()
                 else
                 {
                     emit signPrintQuestion(question->_answer);
-                    _questionHistory->append(question);
+                    _questionHistory->append(question->_answerDescription);
                 }
             }
         }
-        emit AddSpacer();
+        emit signAddSpacer();
     }
 }
 
-QString Handler::GetQuestionHistory()
+QStringList * Handler::GetQuestionHistory()
 {
-    QString out = "";
-    foreach (Question *question, *_questionHistory)
-    {
-        out += question->_questionDescription + "\n" + question->_answerDescription + "\n";
-    }
-    return out;
+    return _questionHistory;
 }
 
 void Handler::ClearQuestionHistory()

@@ -17,7 +17,7 @@ public:
     QString GetPath();
     Question * GetQuestion(int questionNumber);
     void StartProccess();
-    QString GetQuestionHistory();
+    QStringList * GetQuestionHistory();
     void ClearQuestionHistory();
 
 private:
@@ -26,13 +26,13 @@ private:
     void RemoveQuestions();
     QString _defaultPath = "";
     char _separators[2] = {'|','\n'};
-    QList<Question *> *_questionHistory = nullptr;
+    QStringList *_questionHistory = nullptr;
 
 signals:
      void signPrintQuestion(QString questionText);
      void signCreateButton(QString answerText);
-     void onClicked();
-     void AddSpacer();
+     void signClicked();
+     void signAddSpacer();
 
 public slots:
      void onHandlerCurrentButtonsClick();

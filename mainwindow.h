@@ -8,6 +8,7 @@
 #include <QVBoxLayout>
 #include "handler.h"
 #include <QSpacerItem>
+#include "history.h"
 
 namespace Ui {
 class MainWindow;
@@ -29,6 +30,7 @@ private:
     QList<QPushButton *> *_currentButtons = nullptr;
     QVBoxLayout *_buttonsLayout = nullptr;
     QSpacerItem *_spacer = nullptr;
+    History *_history = nullptr;
 
     void InitGui();
     void WriteSettings();
@@ -48,6 +50,9 @@ private slots:
     void on_Exit_triggered();
 
     void onAddSpacer();
+
+signals:
+    void signShowTable();
 };
 
 #endif // MAINWINDOW_H

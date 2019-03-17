@@ -18,11 +18,15 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(_handler, SIGNAL(signCreateButton(QString)),
             this, SLOT(onCreateButton(QString)),
             Qt::ConnectionType::QueuedConnection);
-    connect(_handler, SIGNAL(AddSpacer()),
+    connect(_handler, SIGNAL(signAddSpacer()),
             this, SLOT(onAddSpacer()),
             Qt::ConnectionType::QueuedConnection);
 
     //_spacer = new QSpacerItem(100,100);
+    _history = new History(_handler, this);
+    connect(this, SIGNAL(signShowTable()),
+            _history, SLOT(onShowTable()),
+            Qt::ConnectionType::QueuedConnection);
 
     InitGui();
 
@@ -118,7 +122,7 @@ void MainWindow::onCreateButton(QString answerText)
     connect(btn, SIGNAL(clicked()),
             _handler, SLOT(onHandlerCurrentButtonsClick()),
             Qt::ConnectionType::QueuedConnection);
-    connect(_handler, SIGNAL(onClicked()),
+    connect(_handler, SIGNAL(signClicked()),
             this, SLOT(onCurrentButtonsClick()),
             Qt::ConnectionType::QueuedConnection);
 
@@ -158,7 +162,9 @@ void MainWindow::on_Restart_triggered()
 
 void MainWindow::on_ShowPath_triggered()
 {
-    QMessageBox::information(this, "История", _handler->GetQuestionHistory());
+    //QMessageBox::information(this, "История", _handler->GetQuestionHistory());
+    emit signShowTable();
+    _history->show();
 }
 
 void MainWindow::on_Exit_triggered()
