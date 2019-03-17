@@ -6,7 +6,7 @@
 class Question
 {
 public:
-    Question(int currId, int prevId, QString question, QString answer, QString questionDescription, QString answerDescription);
+    Question(int currId, int prevId, QString question, QString answer, QString questionDescription);
 
     int _currId = 0;
     int _prevId = 0;

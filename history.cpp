@@ -1,5 +1,6 @@
 #include "history.h"
 #include "ui_history.h"
+#include <QHeaderView>
 
 History::History(Handler *handler, QWidget *parent) :
     QDialog(parent),

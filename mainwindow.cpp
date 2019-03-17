@@ -115,7 +115,7 @@ void MainWindow::onCreateButton(QString answerText)
 {
     QPushButton *btn = new QPushButton();
     btn->setText(answerText);
-    btn->setMaximumWidth(100);
+    btn->setMaximumWidth(10000);
     btn->setMaximumHeight(50);
     btn->setStyleSheet("color: black; alignment: center");
 

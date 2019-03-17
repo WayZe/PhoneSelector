@@ -15,7 +15,7 @@ class History : public QDialog
     Q_OBJECT
 
 public:
-    explicit History(Handler *handler, QWidget *parent = 0);
+    explicit History(Handler *handler, QWidget *parent = nullptr);
     ~History();
 
 private:

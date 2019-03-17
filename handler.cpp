@@ -50,13 +50,15 @@ bool Handler::ReadQuestions(bool isDialog)
             while(!file.atEnd())
             {
                 QList<QByteArray> questionsElems = file.readLine().split(_separators[0]);
-                if (questionsElems.count() > 6)
+                if (questionsElems.count() != 5)
                 {
                     isRightFormat = false;
                     RemoveQuestions();
                     qDebug() << "Bad format";
                     break;
                 }
+                else
+                {
 
                 foreach (QByteArray part, questionsElems)
                 {
@@ -68,8 +70,8 @@ bool Handler::ReadQuestions(bool isDialog)
                                                 questionsElems.at(1).toInt(),
                                                 questionsElems.at(2),
                                                 questionsElems.at(3),
-                                                questionsElems.at(4),
-                                                questionsElems.at(5)));
+                                                questionsElems.at(4)));
+                }
             }
             file.close();
         }
@@ -82,11 +84,6 @@ bool Handler::ReadQuestions(bool isDialog)
     else
     {
         emit signPrintQuestion("Выберите файл");
-    }
-
-    if (isRightFormat)
-    {
-
     }
 
     return isRightFormat;
@@ -125,19 +122,19 @@ void Handler::StartProccess()
 {
     if (_questions)
     {
-        int minQuestionNumber = _questions->at(0)->_currId;
+        int minQuestionNumber = 0;
 
         for (int i = 1; i < _questions->count(); i++)
         {
-            if (_questions->at(i)->_currId < minQuestionNumber)
+            if (i < minQuestionNumber)
             {
-                minQuestionNumber = _questions->at(i)->_currId;
+                minQuestionNumber = i;
             }
         }
 
         foreach (Question *question, *_questions)
         {
-            if (question->_currId == minQuestionNumber)
+            if (question->_currId == _questions->at(minQuestionNumber)->_currId)
             {
                 emit signPrintQuestion(question->_question);
                 _questionHistory->append(question->_question);
@@ -147,7 +144,7 @@ void Handler::StartProccess()
 
         foreach (Question *question, *_questions)
         {
-            if (question->_prevId == minQuestionNumber)
+            if (question->_prevId == _questions->at(minQuestionNumber)->_currId)
             {
                 emit signCreateButton(question->_answer);
             }
