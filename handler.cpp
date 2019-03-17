@@ -125,9 +125,19 @@ void Handler::StartProccess()
 {
     if (_questions)
     {
+        int minQuestionNumber = _questions->at(0)->_currId;
+
+        for (int i = 1; i < _questions->count(); i++)
+        {
+            if (_questions->at(i)->_currId < minQuestionNumber)
+            {
+                minQuestionNumber = _questions->at(i)->_currId;
+            }
+        }
+
         foreach (Question *question, *_questions)
         {
-            if (question->_currId == 1)
+            if (question->_currId == minQuestionNumber)
             {
                 emit signPrintQuestion(question->_question);
                 _questionHistory->append(question->_question);
@@ -137,7 +147,7 @@ void Handler::StartProccess()
 
         foreach (Question *question, *_questions)
         {
-            if (question->_prevId == 1)
+            if (question->_prevId == minQuestionNumber)
             {
                 emit signCreateButton(question->_answer);
             }
