@@ -8,20 +8,21 @@
 Handler::Handler()
 {
     _questionHistory = new QStringList();
+    _currIds = new QList<Question *>();
 }
 
 Handler::~Handler()
 {
-//    if (_questionHistory)
-//    {
-//        foreach (Question *question, *_questionHistory)
-//        {
-//            delete question;
-//            question = nullptr;
-//        }
-//        delete _questionHistory;
-//        _questionHistory = nullptr;
-//    }
+    //    if (_questionHistory)
+    //    {
+    //        foreach (Question *question, *_questionHistory)
+    //        {
+    //            delete question;
+    //            question = nullptr;
+    //        }
+    //        delete _questionHistory;
+    //        _questionHistory = nullptr;
+    //    }
 
     RemoveQuestions();
 }
@@ -60,17 +61,17 @@ bool Handler::ReadQuestions(bool isDialog)
                 else
                 {
 
-                foreach (QByteArray part, questionsElems)
-                {
-                    part = part.split('\n')[0];
-                    qDebug() << part;
-                }
+                    foreach (QByteArray part, questionsElems)
+                    {
+                        part = part.split('\n')[0];
+                        qDebug() << part;
+                    }
 
-                _questions->append(new Question(questionsElems.at(0).toInt(),
-                                                questionsElems.at(1).toInt(),
-                                                questionsElems.at(2),
-                                                questionsElems.at(3),
-                                                questionsElems.at(4)));
+                    _questions->append(new Question(questionsElems.at(0).toInt(),
+                                                    questionsElems.at(1).toInt(),
+                                                    questionsElems.at(2),
+                                                    questionsElems.at(3),
+                                                    questionsElems.at(4)));
                 }
             }
             file.close();
@@ -120,6 +121,16 @@ Question * Handler::GetQuestion(int questionNumber)
 
 void Handler::StartProccess()
 {
+    if (_currIds)
+    {
+        foreach (Question *question, *_currIds)
+        {
+            delete question;
+            question = nullptr;
+        }
+        _currIds->clear();
+    }
+
     if (_questions)
     {
         int minQuestionNumber = 0;
@@ -147,6 +158,7 @@ void Handler::StartProccess()
             if (question->_prevId == _questions->at(minQuestionNumber)->_currId)
             {
                 emit signCreateButton(question->_answer);
+                _currIds->append(question);
             }
         }
         emit signAddSpacer();
@@ -161,6 +173,18 @@ void Handler::onHandlerCurrentButtonsClick()
 {
     QPushButton* btn = qobject_cast<QPushButton *>(sender());
     QString answer = btn->text();
+    int prevCurrId = -1;
+    if (_currIds)
+    {
+        foreach (Question *question, *_currIds)
+        {
+            if(question->_answer == answer)
+            {
+                prevCurrId = question->_currId;
+            }
+        }
+        _currIds->clear();
+    }
 
     //_questionHistory->append(answer);
 
@@ -172,7 +196,7 @@ void Handler::onHandlerCurrentButtonsClick()
     {
         foreach (Question *question, *_questions)
         {
-            if(question->_answer == answer)
+            if(question->_currId == prevCurrId)
             {
                 emit signPrintQuestion(question->_question);
                 currId = question->_currId;
@@ -188,6 +212,8 @@ void Handler::onHandlerCurrentButtonsClick()
                 if (question->_question != "")
                 {
                     emit signCreateButton(question->_answer);
+                    _currIds->append(question);
+
                 }
                 else
                 {

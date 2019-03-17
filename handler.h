@@ -27,6 +27,7 @@ private:
     QString _defaultPath = "";
     char _separators[2] = {'|','\n'};
     QStringList *_questionHistory = nullptr;
+    QList<Question *> *_currIds = nullptr;
 
 signals:
      void signPrintQuestion(QString questionText);
