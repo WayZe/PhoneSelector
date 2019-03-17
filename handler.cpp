@@ -137,7 +137,7 @@ void Handler::StartProccess()
             if (question->_currId == _questions->at(minQuestionNumber)->_currId)
             {
                 emit signPrintQuestion(question->_question);
-                _questionHistory->append(question->_question);
+                _questionHistory->append(question->_questionDescription);
                 break;
             }
         }
@@ -192,7 +192,7 @@ void Handler::onHandlerCurrentButtonsClick()
                 else
                 {
                     emit signPrintQuestion(question->_answer);
-                    //_questionHistory->append(question->_answerDescription);
+                    //_questionHistory->append(question->_questionDescription);
                 }
             }
         }

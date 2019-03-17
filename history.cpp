@@ -1,6 +1,7 @@
 #include "history.h"
 #include "ui_history.h"
 #include <QHeaderView>
+#include <QDebug>
 
 History::History(Handler *handler, QWidget *parent) :
     QDialog(parent),
@@ -51,10 +52,11 @@ void History::onShowTable()
         }
         _tableItems->clear();
     }
-    _table->setRowCount(descriptions->count());
+    _table->setRowCount(descriptions->count() + 1);
     _table->resizeColumnsToContents();
     int i = 0;
-    for (i; i < descriptions->count() - 2; i++)
+    qDebug() << "descriptions count" << descriptions->count();
+    for (i; i < descriptions->count() - 1; i++)
     {
         _tableItems->append(new QTableWidgetItem(QString::number(i+1)));
         _table->setItem(i, 0, _tableItems->last());
