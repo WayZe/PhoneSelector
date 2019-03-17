@@ -41,7 +41,15 @@ History::~History()
 void History::onShowTable()
 {
     QStringList *descriptions = _handler->GetQuestionHistory();
-    _table->clear();
+    if (_tableItems)
+    {
+        foreach (QTableWidgetItem *tableItem, *_tableItems)
+        {
+            delete tableItem;
+            tableItem = nullptr;
+        }
+        _tableItems->clear();
+    }
     _table->setRowCount(descriptions->count());
     _table->resizeColumnsToContents();
     int i = 0;
