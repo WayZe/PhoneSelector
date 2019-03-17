@@ -64,6 +64,21 @@ void MainWindow::on_Open_triggered()
     if (_handler->ReadQuestions(true))
     {
         this->WriteSettings();
+
+        if (_currentButtons)
+        {
+            foreach (QPushButton *btn, *_currentButtons)
+            {
+                delete btn;
+                btn = nullptr;
+            }
+            _currentButtons->clear();
+        }
+
+        _handler->ClearQuestionHistory();
+
+        _handler->StartProccess();
+
 //        foreach (Question *question, *questions)
 //        {
 //            outQuestion+=QString::number(question->_currId) + " " +

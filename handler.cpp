@@ -176,7 +176,7 @@ void Handler::onHandlerCurrentButtonsClick()
             {
                 emit signPrintQuestion(question->_question);
                 currId = question->_currId;
-                _questionHistory->append(question->_answerDescription);
+                //_questionHistory->append(question->_answerDescription);
                 _questionHistory->append(question->_questionDescription);
             }
         }
@@ -192,7 +192,7 @@ void Handler::onHandlerCurrentButtonsClick()
                 else
                 {
                     emit signPrintQuestion(question->_answer);
-                    _questionHistory->append(question->_answerDescription);
+                    //_questionHistory->append(question->_answerDescription);
                 }
             }
         }
