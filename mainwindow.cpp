@@ -49,6 +49,7 @@ void MainWindow::InitGui()
     _lbl->setMinimumHeight(100);
     _lbl->setMinimumWidth(200);
     _lbl->setStyleSheet("color: black; alignment: center");
+    _lbl->setReadOnly(true);
     ui->horizontalLayout->addWidget(_lbl);
 
     _buttonsLayout = new QVBoxLayout(this);

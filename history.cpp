@@ -11,6 +11,7 @@ History::History(Handler *handler, QWidget *parent) :
 
     _handler = handler;
     _table = new QTableWidget(this);
+    _table->setEditTriggers(QTableWidget::NoEditTriggers);
     //_table->setItem(1, 1, new QTableWidgetItem("2123"));
     _table->setColumnCount(2);
     _table->setShowGrid(true);
