@@ -59,6 +59,7 @@ void History::onShowTable()
     qDebug() << "descriptions count" << descriptions->count();
     for (i; i < descriptions->count() - 1; i++)
     {
+        _table->setRowHeight(i, 40);
         _tableItems->append(new QTableWidgetItem(QString::number(i+1)));
         _table->setItem(i, 0, _tableItems->last());
         _tableItems->append(new QTableWidgetItem(descriptions->at(i)));
@@ -67,6 +68,7 @@ void History::onShowTable()
 
     i++;
 
+    _table->setRowHeight(i, 40);
     _tableItems->append(new QTableWidgetItem(QString::number(i)));
     _table->setItem(i, 0, _tableItems->last());
     _tableItems->append(new QTableWidgetItem(descriptions->last()));
