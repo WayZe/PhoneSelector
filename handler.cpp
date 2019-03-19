@@ -56,6 +56,7 @@ bool Handler::ReadQuestions(bool isDialog)
                     isRightFormat = false;
                     RemoveQuestions();
                     qDebug() << "Bad format";
+                    signPrintQuestion("Вы выбрали файл с неверным форматом.");
                     break;
                 }
                 else
