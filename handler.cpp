@@ -13,17 +13,6 @@ Handler::Handler()
 
 Handler::~Handler()
 {
-    //    if (_questionHistory)
-    //    {
-    //        foreach (Question *question, *_questionHistory)
-    //        {
-    //            delete question;
-    //            question = nullptr;
-    //        }
-    //        delete _questionHistory;
-    //        _questionHistory = nullptr;
-    //    }
-
     RemoveQuestions();
 }
 
@@ -162,7 +151,6 @@ void Handler::StartProccess()
                 _currIds->append(question);
             }
         }
-        emit signAddSpacer();
     }
     else
     {
@@ -187,8 +175,6 @@ void Handler::onHandlerCurrentButtonsClick()
         _currIds->clear();
     }
 
-    //_questionHistory->append(answer);
-
     emit signClicked();
 
     int currId = -1;
@@ -201,7 +187,6 @@ void Handler::onHandlerCurrentButtonsClick()
             {
                 emit signPrintQuestion(question->_question);
                 currId = question->_currId;
-                //_questionHistory->append(question->_answerDescription);
                 _questionHistory->append(question->_questionDescription);
             }
         }
@@ -219,11 +204,9 @@ void Handler::onHandlerCurrentButtonsClick()
                 else
                 {
                     emit signPrintQuestion(question->_answer);
-                    //_questionHistory->append(question->_questionDescription);
                 }
             }
         }
-        emit signAddSpacer();
     }
 }
 

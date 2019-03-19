@@ -49,8 +49,6 @@ private slots:
     void on_ShowPath_triggered();
     void on_Exit_triggered();
 
-    void onAddSpacer();
-
 signals:
     void signShowTable();
 };
